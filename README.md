@@ -20,11 +20,14 @@ Kill Hailrake [QS a1q5 2]
 [XP 4]
 
 ```
-**Opperation**|**Example**|**Description**
-:-----:|:-----:|:-----:
-WP|[WP The Coast]|"Take Waypoint" Triggers the Opperation once Local Player's area is the same "The Coast"
-G|[G The Mud Flats]|"Go To" Triggers the Opperation once Local Player's area is the same "The Mud Flats"
-QS|[QS a1q1 3]|"Queast State" Triggers once the quest "a1q1" state is equal or higher than the wanted stage "3" [0-1-2-3-4] - State ID's of "a1q1"
-QT|[QT a1q1]|"Quest Trigger" state 0 = complete (state id's are in reverse order) once "a1q1" is completed its stateid = 0 and opperation triggers
-P|[P The Submerged Passage]|Triggers when player has the waypoint for area "The Submerged Passage"
-XP|[XP 4]| Triggers once player level is equal or above "4"
+
+##### Keywords Explanation
+
+| Keyword | Example                   | Description    | Is marked as completed                                                                                                                                  |
+| ---     | ---                       | ---            | ---                                                                                                                                                     |
+| WP      | [WP The Coast]            | Take Waypoint  | When the Player's current area is equal to "The Coast"                                                                                                  |
+| G       | [G The Mud Flats]         | Go To          | When the Player's current area is equal to "The Mud Flats"                                                                                              |
+| QS      | [QS a1q1 3]               | "Queast State" | When the quest `a1q1`s state (state id) is equal or lower than the wanted stage "3" [4-3-2-1-0], (the closer to 0 a quest is the further the progress.) |
+| QT      | [QT a1q1]                 | Quest Turnin   | When quest is turned in (typically when reward is received)                                                                                             |
+| P       | [P The Submerged Passage] | Has Waypoint   | When the Player has the waypoint for the area "The Submerged Passage"                                                                                   |
+| XP      | [XP 4]                    | Player level   | When the Player level is equal or greater than "4"                                                                                                      |
