@@ -16,10 +16,10 @@ namespace LVLGuide
 
         public override void OnLoad()
         {
-            _guide = GuideParser.ParseGuideFile($"{DirectoryFullName}\\guide.txt");
+            _guide = GuideParser.ParseGuideFile($"{DirectoryFullName}\\{Settings.FileName.Value}");
             Settings.ReloadButton.OnPressed = () =>
             {
-                _guide = GuideParser.ParseGuideFile($"{DirectoryFullName}\\guide.txt");
+                _guide = GuideParser.ParseGuideFile($"{DirectoryFullName}\\{Settings.FileName.Value}");
                 DebugWindow.LogMsg("Reloaded Guide.txt");
             };
             base.OnLoad();

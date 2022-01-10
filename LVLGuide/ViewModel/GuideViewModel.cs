@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
 using ImGuiNET;
 using LVLGuide.model;
+using LVLGuide.Model.SubSteps;
 using LVLGuide.ViewModelProcessor;
 using LVLGuide.ViewModelProcessor.Nodes;
 
@@ -13,8 +16,25 @@ namespace LVLGuide.ViewModel
         {
             GuideSteps = guide.GetCurrentStep().SubSteps.Select(x =>
             {
+                if (x is CopyableSubStep)
+                {
+                    var node2 = new GuideStepCopyViewModel()
+                    {
+                        Copy = new ButtonNode(),
+                        Text = new LabelNode(x.Text)
+                    };
+                    node2.Copy.OnPressed += () =>
+                    {
+                        Thread thread = new Thread(() => Clipboard.SetText(node2.Text.Text));
+                        thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
+                        thread.Start();
+                        thread.Join();
+                    };
+                    return node2 as IMenu;
+                }
                 var node = new GuideStepViewModel
                 {
+                   // Copy = new ButtonNode(),
                     Done = new ToggleNode(x.IsComplete),
                     Text = new LabelNode(x.Text)
                 };
@@ -23,7 +43,8 @@ namespace LVLGuide.ViewModel
                     x.IsComplete = newValue;
                     guide.AutoGoNext = true;
                 };
-                return node;
+               
+                return node as IMenu;
             }).ToList();
             ButtonLeft.OnPressed += () =>
             {
@@ -31,7 +52,6 @@ namespace LVLGuide.ViewModel
                 guide.Previous();
             };
             ButtonRight.OnPressed += guide.Next;
-            ProgressBar = new ProgressBarNode(guide.Progress());
             Label = new LabelNode($"Step {guide.Step()} of {guide.Steps()}");
         }
 
@@ -41,7 +61,6 @@ namespace LVLGuide.ViewModel
         public LabelNode Label { get; }
         [SameLine]
         public ArrowButtonNode ButtonRight { get; } = new ArrowButtonNode { Direction = ImGuiDir.Right };
-        public List<GuideStepViewModel> GuideSteps { get; }
-        public ProgressBarNode ProgressBar { get; }
+        public List<IMenu> GuideSteps { get; }
     }
 }

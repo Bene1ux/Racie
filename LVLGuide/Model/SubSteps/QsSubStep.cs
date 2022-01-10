@@ -27,9 +27,7 @@ namespace LVLGuide.model.SubSteps
         public void Update(GameController gameController)
         {
             var questState = gameController.IngameState.IngameUi.GetQuestStates
-                .Where(x => x.Value.Key.Id == _questId)
-                .Select(x => x.Value.Value)
-                .First();
+                .First(x => x.Quest.Id == _questId);
             if (questState == null)
             {
                 return;

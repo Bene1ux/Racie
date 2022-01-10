@@ -3,6 +3,7 @@ using System.Collections;
 using System.Reflection;
 using ImGuiNET;
 using LVLGuide.ViewModelProcessor.Nodes;
+using SharpDX.Text;
 
 namespace LVLGuide.ViewModelProcessor
 {

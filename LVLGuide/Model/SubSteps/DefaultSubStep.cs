@@ -4,7 +4,8 @@ namespace LVLGuide.model.SubSteps
 {
     public class DefaultSubStep : IGuideSubStep
     {
-        public bool IsComplete { get; set; }
+        public bool IsComplete { get; set; } = true;
+
         public string Text { get; }
 
         public void Update(GameController gameController)

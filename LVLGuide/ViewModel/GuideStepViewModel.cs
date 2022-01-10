@@ -1,4 +1,5 @@
-﻿using LVLGuide.ViewModelProcessor;
+﻿using System.Windows.Forms;
+using LVLGuide.ViewModelProcessor;
 using LVLGuide.ViewModelProcessor.Nodes;
 
 namespace LVLGuide.ViewModel

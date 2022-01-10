@@ -18,7 +18,7 @@ namespace LVLGuide.model.SubSteps
 
         public void Update(GameController gameController)
         {
-            var waypoints = gameController.Game.IngameState.ServerData.WaypointsUnlockState;
+            //var waypoints = gameController.IngameState.Data.ServerData.WaypointsUnlockState;
             if (_wayPointIndex == -1)
             {
                 var areas = gameController.Files.WorldAreas.EntriesList;
@@ -29,7 +29,7 @@ namespace LVLGuide.model.SubSteps
                     if (worldArea.Name == _waypointName)
                     {
                         _wayPointIndex = index;
-                        IsComplete = waypoints[_wayPointIndex];
+                      //  IsComplete = waypoints[_wayPointIndex];
                         return;
                     }
                     index++;
@@ -37,7 +37,7 @@ namespace LVLGuide.model.SubSteps
             }
             else
             {
-                IsComplete = waypoints[_wayPointIndex];
+                //IsComplete = waypoints[_wayPointIndex];
             }
         }
     }
